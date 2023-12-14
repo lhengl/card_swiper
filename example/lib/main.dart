@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:card_swiper/card_swiper.dart';
+import 'package:example/add_to_list.dart';
 import 'package:flutter/material.dart';
 
 import 'src/config.dart';
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
         '/example07': (context) => const ScaffoldWidget(
               child: ExampleCustom(),
               title: 'Custom All',
-            )
+            ),
+        '/example_add_on_swipe': (context) => const ExampleAddOnSwipe(),
       },
     );
   }
@@ -66,8 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ).toList();
   }
 
-  Widget buildListTile(
-      BuildContext context, String title, String subtitle, String url) {
+  Widget buildListTile(BuildContext context, String title, String subtitle, String url) {
     return ListTile(
       onTap: () {
         Navigator.of(context).pushNamed(url);
@@ -100,18 +101,15 @@ class _MyHomePageState extends State<MyHomePage> {
           ['Custom Pagination', 'Custom Pagination', '/example04'],
           ['Phone', 'Phone view', '/example05'],
           ['ScrollView ', 'In a ScrollView', '/example06'],
-          ['Custom', 'Custom all properties', '/example07']
+          ['Custom', 'Custom all properties', '/example07'],
+          ['Dynamic List', 'Add item on swipe', '/example_add_on_swipe']
         ]),
       ),
     );
   }
 }
 
-const List<String> titles = [
-  'Flutter Swiper is awesome',
-  'Really nice',
-  'Yeah'
-];
+const List<String> titles = ['Flutter Swiper is awesome', 'Really nice', 'Yeah'];
 
 class ExampleHorizontal extends StatelessWidget {
   const ExampleHorizontal({Key? key}) : super(key: key);
@@ -186,8 +184,7 @@ class ExampleFraction extends StatelessWidget {
               },
               autoplay: true,
               itemCount: images.length,
-              pagination:
-                  const SwiperPagination(builder: SwiperPagination.fraction),
+              pagination: const SwiperPagination(builder: SwiperPagination.fraction),
               control: const SwiperControl(),
             )),
             Expanded(
@@ -201,9 +198,7 @@ class ExampleFraction extends StatelessWidget {
               autoplay: true,
               itemCount: images.length,
               scrollDirection: Axis.vertical,
-              pagination: const SwiperPagination(
-                  alignment: Alignment.centerRight,
-                  builder: SwiperPagination.fraction),
+              pagination: const SwiperPagination(alignment: Alignment.centerRight, builder: SwiperPagination.fraction),
             ))
           ],
         ));
@@ -271,12 +266,7 @@ class ExampleCustomPagination extends StatelessWidget {
                             Expanded(
                               child: Align(
                                 alignment: Alignment.centerRight,
-                                child: const DotSwiperPaginationBuilder(
-                                        color: Colors.black12,
-                                        activeColor: Colors.black,
-                                        size: 10.0,
-                                        activeSize: 20.0)
-                                    .build(context, config),
+                                child: const DotSwiperPaginationBuilder(color: Colors.black12, activeColor: Colors.black, size: 10.0, activeSize: 20.0).build(context, config),
                               ),
                             )
                           ],
@@ -313,12 +303,7 @@ class ExamplePhone extends StatelessWidget {
           Swiper.children(
             autoplay: false,
             pagination: const SwiperPagination(
-                margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 30.0),
-                builder: DotSwiperPaginationBuilder(
-                    color: Colors.white30,
-                    activeColor: Colors.white,
-                    size: 20.0,
-                    activeSize: 20.0)),
+                margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 30.0), builder: DotSwiperPaginationBuilder(color: Colors.white30, activeColor: Colors.white, size: 20.0, activeSize: 20.0)),
             children: <Widget>[
               Image.asset(
                 'images/1.png',
